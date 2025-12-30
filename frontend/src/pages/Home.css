@@ -1,0 +1,129 @@
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 40px 20px 60px;
+  text-align: center;
+  color: white;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.95;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0 20px 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.error-message {
+  max-width: 800px;
+  margin: 40px auto 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.error-content {
+  padding: 32px;
+  text-align: center;
+}
+
+.error-content h3 {
+  color: #f56565;
+  margin: 0 0 16px 0;
+  font-size: 24px;
+}
+
+.error-content p {
+  color: #4a5568;
+  margin: 0 0 24px 0;
+  font-size: 16px;
+}
+
+.retry-button {
+  padding: 12px 24px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #5568d3;
+}
+
+.action-buttons {
+  max-width: 900px;
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+.reset-button {
+  padding: 12px 32px;
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+  background: #667eea;
+  color: white;
+}
+
+.footer {
+  padding: 24px 20px;
+  text-align: center;
+  color: white;
+  opacity: 0.9;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .header {
+    padding: 24px 20px 40px;
+  }
+}
