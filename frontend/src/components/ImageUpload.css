@@ -1,0 +1,106 @@
+.image-upload-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.upload-area {
+  border: 2px dashed #cbd5e0;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  background: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.upload-area:hover {
+  border-color: #667eea;
+  background: #f7fafc;
+}
+
+.upload-area.drag-active {
+  border-color: #667eea;
+  background: #edf2f7;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-label {
+  cursor: pointer;
+  display: block;
+}
+
+.upload-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.upload-text {
+  font-size: 16px;
+  color: #4a5568;
+  margin: 0 0 8px 0;
+}
+
+.upload-text strong {
+  color: #667eea;
+}
+
+.upload-hint {
+  font-size: 14px;
+  color: #718096;
+  margin: 0;
+}
+
+.image-preview {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.image-info {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.image-name {
+  font-size: 14px;
+  color: #2d3748;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  word-break: break-all;
+}
+
+.image-size {
+  font-size: 12px;
+  color: #718096;
+  margin: 0;
+}
+
+.remove-button {
+  width: 100%;
+  padding: 10px;
+  background: #f56565;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.remove-button:hover {
+  background: #e53e3e;
+}

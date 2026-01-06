@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
-import TextInput from '../components/TextInput';
+import UnifiedInput from '../components/UnifiedInput';
 import ResultCard from '../components/ResultCard';
 import Loader from '../components/Loader';
-import { analyzeText } from '../services/api';
+import ChatBot from '../components/ChatBot';
+import { analyzeText, analyzeImage } from '../services/api';
 import './Home.css';
 
 const Home = () => {
-  const [text, setText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [analysisType, setAnalysisType] = useState('text');
 
-  const handleAnalyze = async () => {
-    if (!text.trim()) return;
-
+  const handleAnalyze = async (data) => {
     setIsLoading(true);
     setError(null);
     setResult(null);
+    setAnalysisType(data.type);
 
     try {
-      const response = await analyzeText(text, { detailed: true });
+      let response;
+      if (data.type === 'text') {
+        response = await analyzeText(data.content, { detailed: true });
+      } else if (data.type === 'image') {
+        response = await analyzeImage(data.content, { detailed: true });
+      }
       setResult(response);
     } catch (err) {
-      setError(err.message || 'Failed to analyze content. Please try again.');
+      setError(err.message || `Failed to analyze ${data.type}. Please try again.`);
       console.error('Analysis error:', err);
     } finally {
       setIsLoading(false);
@@ -30,7 +35,6 @@ const Home = () => {
   };
 
   const handleReset = () => {
-    setText('');
     setResult(null);
     setError(null);
   };
@@ -47,14 +51,9 @@ const Home = () => {
       </header>
 
       <main className="main-content">
-        <TextInput
-          value={text}
-          onChange={setText}
-          onAnalyze={handleAnalyze}
-          isLoading={isLoading}
-        />
+        <UnifiedInput onAnalyze={handleAnalyze} isLoading={isLoading} />
 
-        {isLoading && <Loader message="Analyzing content with AI..." />}
+        {isLoading && <Loader message={`Analyzing ${analysisType} with AI...`} />}
 
         {error && (
           <div className="error-message">
@@ -69,6 +68,8 @@ const Home = () => {
         )}
 
         {result && !isLoading && <ResultCard result={result} />}
+
+  {result && !isLoading && <ChatBot analysisContext={result.data} />}
 
         {result && (
           <div className="action-buttons">

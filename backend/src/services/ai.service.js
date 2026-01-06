@@ -96,6 +96,168 @@ ${options.detailed ? 'Provide detailed analysis for each factor.' : 'Provide con
   }
 
   /**
+   * Analyze image content for scams and trustworthiness
+   * @param {Buffer} imageBuffer - Image file buffer
+   * @param {string} mimeType - Image MIME type
+   * @param {Object} options - Analysis options
+   * @returns {Object} Analysis results
+   */
+  async analyzeImage(imageBuffer, mimeType, options = {}) {
+    try {
+      if (!imageBuffer || imageBuffer.length === 0) {
+        throw new Error('Image buffer is required for analysis');
+      }
+
+      // Convert image to base64
+      const base64Image = imageBuffer.toString('base64');
+      const dataUrl = `data:${mimeType};base64,${base64Image}`;
+
+      const prompt = this.buildImageAnalysisPrompt(options);
+      
+      const azureUrl = `${this.endpoint}/openai/deployments/${this.deployment}/chat/completions?api-version=${this.apiVersion}`;
+      console.log('🔍 Calling Azure OpenAI URL for image:', azureUrl);
+      
+      const response = await axios.post(
+        azureUrl,
+        {
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an expert at detecting scams, fake offers, phishing attempts, and manipulative content in images. Analyze images for trust and safety.'
+            },
+            {
+              role: 'user',
+              content: [
+                {
+                  type: 'text',
+                  text: prompt
+                },
+                {
+                  type: 'image_url',
+                  image_url: {
+                    url: dataUrl
+                  }
+                }
+              ]
+            }
+          ],
+          temperature: 0.3,
+          max_tokens: 1500
+        },
+        {
+          headers: {
+            'api-key': this.apiKey,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      const aiResponse = response.data.choices[0].message.content;
+      return this.parseAIResponse(aiResponse);
+    } catch (error) {
+      console.error('AI Service Error (Image):', error.message);
+      throw new Error(`AI image analysis failed: ${error.message}`);
+    }
+  }
+
+  //
+  /**
+   * Chat with context about previous analysis
+   */
+  async chatWithContext(userMessage, analysisContext = null, conversationHistory = []) {
+    try {
+      if (!userMessage || userMessage.trim().length === 0) {
+        throw new Error('Message is required');
+      }
+
+      const messages = [
+        {
+          role: 'system',
+          content: 'You are a helpful AI assistant specializing in content safety, scam detection, and digital literacy. Answer user questions about their analysis results in a clear, concise, and helpful manner.'
+        }
+      ];
+
+      if (analysisContext) {
+        messages.push({
+          role: 'system',
+          content: `Context from previous analysis:\nRisk Score: ${analysisContext.riskScore}\nTrust Level: ${analysisContext.trustLevel}\nSummary: ${analysisContext.analysis?.summary || 'N/A'}\n\nUse this context to answer the user's questions.`
+        });
+      }
+
+      conversationHistory.forEach(msg => {
+        messages.push({
+          role: msg.role,
+          content: msg.content
+        });
+      });
+
+      messages.push({
+        role: 'user',
+        content: userMessage
+      });
+
+      const azureUrl = `${this.endpoint}/openai/deployments/${this.deployment}/chat/completions?api-version=${this.apiVersion}`;
+  
+      const response = await axios.post(
+        azureUrl,
+        {
+          messages: messages,
+          temperature: 0.7,
+          max_tokens: 800
+        },
+        {
+          headers: {
+            'api-key': this.apiKey,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      const aiResponse = response.data.choices[0].message.content;
+      return {
+        message: aiResponse,
+        timestamp: new Date().toISOString()
+      };
+    } catch (error) {
+      console.error('AI Service Error (Chat):', error.message);
+      throw new Error(`Chat failed: ${error.message}`);
+    }
+  }
+
+  /**
+   * Build analysis prompt for image
+   */
+  buildImageAnalysisPrompt(options) {
+    return `Analyze this image for potential scams, fraud, or manipulative content.
+
+Please provide a detailed analysis in the following JSON format:
+{
+  "summary": "Brief summary of what you see and the risk level",
+  "factors": [
+    {
+      "type": "misinformation|bias|manipulation|credibility|verification",
+      "severity": 1-10,
+      "description": "Description of the risk factor",
+      "evidence": "Specific visual elements that indicate this risk"
+    }
+  ],
+  "recommendations": ["List of recommendations for the viewer"],
+  "overallAssessment": "Overall safety assessment of this image"
+}
+
+Focus on:
+1. Fake job offers or "too good to be true" promises
+2. Requests for money, payment, or personal information
+3. Urgency tactics ("Limited time", "Act now")
+4. Suspicious URLs or QR codes
+5. Impersonation of legitimate brands
+6. Poor quality or manipulated images
+7. Grammatical errors or unprofessional design
+
+${options.detailed ? 'Provide detailed analysis for each factor.' : 'Provide concise analysis.'}`;
+  }
+
+  /**
    * Parse AI response and extract structured data
    */
   parseAIResponse(aiResponse) {

@@ -65,6 +65,100 @@ const analyzeText = async (req, res, next) => {
 };
 
 /**
+ * Analyze image content
+ */
+const analyzeImage = async (req, res, next) => {
+  try {
+    const { options = {} } = req.body;
+
+    // Validate file upload
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        error: { message: 'Image file is required' }
+      });
+    }
+
+    const imageBuffer = req.file.buffer;
+    const mimeType = req.file.mimetype;
+
+    // Perform AI analysis
+    const analysis = await aiService.analyzeImage(imageBuffer, mimeType, { detailed: true, ...options });
+
+    // Calculate risk score
+    const riskData = calculateRiskScore(analysis);
+    const riskBreakdown = generateRiskBreakdown(analysis.factors || []);
+
+    // Prepare response
+    const response = {
+      success: true,
+      data: {
+        riskScore: riskData.riskScore,
+        trustLevel: riskData.trustLevel,
+        confidence: riskData.confidence,
+        analysis: {
+          summary: analysis.summary,
+          factors: analysis.factors,
+          recommendations: analysis.recommendations,
+          overallAssessment: analysis.overallAssessment,
+          riskBreakdown
+        },
+        metadata: {
+          fileSize: req.file.size,
+          mimeType: req.file.mimetype,
+          analyzedAt: new Date().toISOString()
+        }
+      }
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * Handle chat messages with analysis context
+ */
+const handleChat = async (req, res, next) => {
+  try {
+    const { message, analysisContext, conversationHistory = [] } = req.body;
+
+    if (!message || typeof message !== 'string') {
+      return res.status(400).json({
+        success: false,
+        error: { message: 'Message is required and must be a string' }
+      });
+    }
+
+    if (message.trim().length === 0) {
+      return res.status(400).json({
+        success: false,
+        error: { message: 'Message cannot be empty' }
+      });
+    }
+
+    const chatResponse = await aiService.chatWithContext(
+      message,
+      analysisContext,
+      conversationHistory
+    );
+
+    const response = {
+      success: true,
+      data: {
+        message: chatResponse.message,
+        timestamp: chatResponse.timestamp
+      }
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * Health check endpoint
  */
 const healthCheck = (req, res) => {
@@ -77,5 +171,7 @@ const healthCheck = (req, res) => {
 
 module.exports = {
   analyzeText,
+  analyzeImage,
+  handleChat,
   healthCheck
 };

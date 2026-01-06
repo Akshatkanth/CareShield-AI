@@ -47,6 +47,29 @@ export const analyzeText = async (text, options = {}) => {
 };
 
 /**
+ * Analyze image content
+ * @param {File} imageFile - Image file to analyze
+ * @param {Object} options - Analysis options
+ * @returns {Promise} Analysis results
+ */
+export const analyzeImage = async (imageFile, options = {}) => {
+  try {
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    formData.append('options', JSON.stringify(options));
+
+    const response = await api.post('/analyze-image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
  * Health check
  */
 export const healthCheck = async () => {
