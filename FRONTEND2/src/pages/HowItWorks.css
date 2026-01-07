@@ -1,0 +1,168 @@
+/* ===== PAGE ===== */
+
+.howitworks-page {
+  min-height: 100vh;
+  padding-top: 140px; /* CRITICAL: prevents navbar cutting numbers */
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  font-family: 'Manrope', sans-serif;
+  position: relative;
+}
+
+.bg-pattern {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15), transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.15), transparent 50%);
+  pointer-events: none;
+}
+
+/* ===== NAVBAR ===== */
+
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 96px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  padding: 0 32px;
+  z-index: 100;
+
+  backdrop-filter: blur(16px);
+  background: rgba(20, 20, 40, 0.45);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+/* LEFT */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* CENTER */
+.nav-center {
+  text-align: center;
+  color: white;
+}
+
+.nav-center h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.nav-center p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* RIGHT */
+.nav-right button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(92,61,139,0.9);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== STEPS ===== */
+
+.steps-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.step-row {
+  display: flex;
+  gap: 32px;
+}
+
+.step-card {
+  flex: 1;
+  background: rgba(255,255,255,0.95);
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+  position: relative;
+
+  /* 🔧 VISUAL POLISH (SAFE) */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* STEP NUMBER */
+.step-number {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: rgb(237, 237, 237);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🔧 ICON VISIBILITY FIX */
+.step-card svg,
+.step-card i {
+  width: 70px;          
+  height: 70px;
+
+  color: #667eea;
+  stroke: #667eea;
+  opacity: 0.95;
+
+  background: rgba(102, 126, 234, 0.10);
+  border-radius: 50%;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+/* TEXT */
+.step-card h3 {
+  margin-top: 24px;
+  font-size: 24px;
+  color: #1e293b;
+}
+
+.step-card p {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+  .step-row {
+    flex-direction: column;
+  }
+
+  .nav-center h1 {
+    font-size: 28px;
+  }
+}

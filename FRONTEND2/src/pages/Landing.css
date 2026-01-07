@@ -1,0 +1,366 @@
+/* =========================
+   LANDING PAGE – POLISHED
+   ========================= */
+
+.landing-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px 40px;
+  background: radial-gradient(circle at top, #1872b3 0, #e1d4e0 40%, #4a084d 100%);
+  color: #0f172a;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 90px; /* space for fixed navbar */
+  padding-right: 420px;
+}
+
+.landing-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(96, 165, 250, 0.25), transparent 55%),
+    radial-gradient(circle at 85% 80%, rgba(244, 114, 182, 0.25), transparent 55%);
+  pointer-events: none;
+}
+
+/* =========================
+   NAVBAR (GLASS EFFECT)
+   ========================= */
+
+.landing-top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.75),
+    rgba(118, 75, 162, 0.75),
+    rgba(240, 147, 251, 0.75)
+  );
+  backdrop-filter: blur(14px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.header-icon {
+  color: #ffffff;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.nav-left {
+  display: flex;
+  gap: 1.2rem;
+}
+
+/* =========================
+   NAV BUTTONS (USE GLOBAL STYLES)
+   ========================= */
+
+.header-nav a,
+.header-nav button {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.header-nav a:hover,
+.header-nav button:hover {
+  background: rgba(92, 61, 139, 0.18);
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.landing-header,
+.landing-main {
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+}
+
+.landing-title {
+  font-size: 46px;
+  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #4338ca;
+}
+
+.landing-subtitle {
+  margin: 0;
+  font-size: 20px;
+  color: #452584;
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
+.landing-main {
+  max-width: 760px;
+}
+
+.landing-description {
+  margin: 0 0 26px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2e353d;
+}
+
+.landing-description-wrapper {
+  display: inline-block;
+  overflow: hidden;           /* left/right se aane wala part hide */
+}
+
+/* multi-line allowed: white-space: normal */
+.slide-reveal {
+  display: inline-block;
+  transform-origin: left center;
+  white-space: normal;
+  animation: slide-reveal 4s ease-in-out infinite;
+}
+
+@keyframes slide-reveal {
+  /* 0–50% (2s): enter + expand from left */
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(-10%);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* 50–100% (next 2s): stay still, visible */
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   PRIMARY CTA
+   ========================= */
+
+.landing-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 32px;
+  padding: 14px 36px;
+
+  border-radius: 999px;
+  border: 2px solid rgba(92, 61, 139, 0.9);
+
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+  transition: all 0.25s ease;
+}
+
+.landing-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 45px rgba(79, 70, 229, 0.5);
+}
+
+.landing-cta-arrow {
+  font-size: 18px;
+}
+
+/* =========================
+   BADGES
+   ========================= */
+
+.landing-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.landing-badge {
+  min-width: 120px;
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(92, 61, 139, 0.9);
+  background: rgba(255, 255, 255, 0.6);
+
+  box-shadow: 0 6px 18px rgba(148, 163, 184, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  color: #374151;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+  .landing-title {
+    font-size: 32px;
+  }
+
+  .landing-subtitle {
+    font-size: 16px;
+  }
+
+  .header-nav {
+    gap: 0.8rem;
+  }
+}
+
+/* =========================
+   LEFT HERO IMAGE SLIDER
+   ========================= */
+
+.landing-left-visual {
+  position: absolute;
+  right: 40px;      /* 👈 RIGHT SIDE */
+  left: auto;       /* 👈 LEFT REMOVE */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 360px;
+  height: 360px;
+  z-index: 0;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 26px;
+}
+
+
+.landing-left-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  animation: fadeSlide 0.9s ease-in-out;
+  filter: saturate(0.95) contrast(0.95);
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(0.95); /* RIGHT se entry */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .landing-left-visual {
+    width: 260px;
+    height: 260px;
+    right: -30px;
+    opacity: 0.35;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .landing-left-visual {
+    display: none;
+  }
+}
+
+.image-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 -20px; /* negative not needed now */
+}
+
+
+.image-controls button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(215, 211, 211, 0.446);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+
+  font-size: 22px;
+  cursor: pointer;
+
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.image-controls button:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+
+/* DOTS */
+.image-dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.image-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.image-dots span.active {
+  background: #6366f1;
+}

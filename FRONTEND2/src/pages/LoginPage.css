@@ -1,0 +1,347 @@
+/* =========================
+   LOGIN PAGE – POLISHED
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated background glow */
+.login-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1), transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2), transparent 50%);
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+/* =========================
+   NAVBAR (CONSISTENT GLASS)
+   ========================= */
+
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 40px;
+  width: 100%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.75),
+    rgba(118, 75, 162, 0.75)
+  );
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+
+  z-index: 10;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.header-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 16px;
+  border-radius: 12px;
+
+  border: 2px solid rgba(92, 61, 139, 0.9);
+  background: transparent;
+
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+.header-nav a:hover {
+  background: rgba(92, 61, 139, 0.18);
+}
+
+/* =========================
+   PAGE HEADER
+   ========================= */
+
+.login-header-content {
+  text-align: center;
+  margin-top: 2.5rem;
+  z-index: 1;
+  position: relative;
+}
+
+.login-header-content h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff, #e0e7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-header-content p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
+.login-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   TABS
+   ========================= */
+
+.form-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 6px 18px rgba(102, 126, 234, 0.35);
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+.login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* =========================
+   SUBMIT BUTTON
+   ========================= */
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+
+  border: 2px solid rgba(92, 61, 139, 0.9);
+  border-radius: 14px;
+
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  transition: all 0.25s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(102, 126, 234, 0.45);
+}
+
+/* =========================
+   FOOTER LINKS
+   ========================= */
+
+.form-footer {
+  text-align: center;
+  margin: 26px 0;
+}
+
+.form-footer p {
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.toggle-link {
+  background: none;
+  border: none;
+  color: #8b9bff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 6px;
+  font-size: 15px;
+}
+
+/* =========================
+   DIVIDER & SOCIAL
+   ========================= */
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 36px 0;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.3),
+    transparent
+  );
+}
+
+.divider span {
+  background: rgba(15, 15, 35, 0.9);
+  padding: 0 16px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.social-btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.social-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.social-btn.google {
+  border-color: #3d2424;
+}
+
+.social-btn.github {
+  border-color: #3d2424;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+  .login-header {
+    padding: 18px 20px;
+  }
+
+  .login-header-content h1 {
+    font-size: 26px;
+  }
+
+  .social-buttons {
+    flex-direction: column;
+  }
+}

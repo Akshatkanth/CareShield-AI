@@ -1,0 +1,237 @@
+.text-input-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.input-wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.text-input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: #667eea;
+}
+
+.text-input:disabled {
+  background-color: #f7fafc;
+  cursor: not-allowed;
+}
+
+.input-info {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.char-count {
+  font-size: 14px;
+  color: #718096;
+}
+
+.analyze-button {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
+}
+
+.analyze-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.5);
+}
+
+.analyze-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.analyze-button:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.attach-row {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.attach-button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #4f46e5;
+  background: #70779fea;
+  color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease, color 0.15s ease,
+    transform 80ms ease-out, box-shadow 80ms ease-out;
+}
+
+.attach-button:hover:not(:disabled) {
+  background: #4f46e5;
+  color: #f9fafb;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(79, 70, 229, 0.7);
+}
+
+.attach-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.attach-count {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.input-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.left-tools {
+  display: flex;
+  gap: 8px;
+}
+
+/* 3 small blocks: file / emoji / voice */
+.icon-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 2px solid #e9cce3;
+  background: transparent;
+  color: #844872;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.icon-pill svg {
+  stroke: #d86e9c;
+}
+
+.icon-pill:hover {
+  background: rgba(115, 19, 90, 0.532);
+  transform: translateY(-1px);
+}
+
+.icon-pill.active {
+  background: rgba(128, 44, 72, 0.22);
+}
+
+.badge {
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #020617;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+}
+
+.char-count {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.emoji-picker-wrapper {
+  margin-top: 8px;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* optional: emoji-mart ko thoda shrink karo */
+.emoji-picker-wrapper .EmojiPickerReact,
+.emoji-picker-wrapper .emscripten {
+  font-size: 10px;
+  align-items:start;
+}
+
+.selected-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.file-chip {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 180px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #374151;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.file-chip-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-chip-size {
+  opacity: 0.7;
+  font-size: 10px;
+}
+
+.file-clear-button {
+  margin-left: 4px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #fecaca;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.file-clear-button:hover {
+  background: rgba(248, 113, 113, 0.15);
+  transform: translateY(-1px);
+}
+
