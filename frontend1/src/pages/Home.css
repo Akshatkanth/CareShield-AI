@@ -1,0 +1,266 @@
+/* =========================
+   HOME PAGE – POLISHED
+   ========================= */
+
+/* Home Container */
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #7b5c99 35%,
+    #a855f7 65%,
+    #da5f9c 100%
+  );
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* =========================
+   NAVBAR (GLASS EFFECT)
+   ========================= */
+
+.header {
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.5rem 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.75),
+    rgba(118, 75, 162, 0.75),
+    rgba(168, 85, 247, 0.75)
+  );
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+
+  z-index: 10;
+}
+
+/* LOGO */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.header-logo:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   NAVIGATION BUTTONS
+   ========================= */
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-left {
+  display: flex;
+  gap: 1rem;
+}
+
+.header-nav a,
+.header-nav button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 16px;
+  border-radius: 12px;
+
+  border: 2px solid rgba(92, 61, 139, 0.9);
+  background: transparent;
+
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.header-nav a:hover,
+.header-nav button:hover {
+  background: rgba(92, 61, 139, 0.18);
+  transform: translateY(-1px);
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
+.main-content {
+  flex: 1;
+  padding: 3rem 2rem 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  padding: 1.5rem 2.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .header-nav {
+    gap: 0.6rem;
+  }
+
+  .main-content {
+    padding: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logo {
+    font-size: 1.1rem;
+  }
+}
+
+/* Floating Chat Button */
+.floating-chat-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+  transition: all 0.3s ease;
+  z-index: 999;
+  animation: bounceIn 0.5s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.floating-chat-button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.7);
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  width: 100%;
+}
+
+.reset-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.reset-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(102, 126, 234, 0.6);
+}
+
+.reset-button:active {
+  transform: translateY(-1px);
+}
+
+.reset-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.floating-chat-button:active {
+  transform: scale(0.95);
+}
+
+.chat-icon {
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-chat-button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    bottom: 20px;
+    right: 20px;
+  }
+}

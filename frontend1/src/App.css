@@ -1,0 +1,145 @@
+/* =========================
+   GLOBAL THEME FOUNDATION
+   CareShield AI
+   ========================= */
+
+/* 1️⃣ Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+
+/* 2️⃣ CSS VARIABLES (Color System) */
+:root {
+  --bg-dark: #0f1021;
+  --bg-card: rgba(255, 255, 255, 0.08);
+
+  --primary-purple: #5c3d8b;
+  --accent-blue: #667eea;
+  --accent-purple: #764ba2;
+
+  --border-purple: rgba(92, 61, 139, 0.9);
+
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.75);
+
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --shadow-light: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* 3️⃣ GLOBAL RESET & BASE STYLES */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif !important;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4️⃣ ROOT APP CONTAINER (KEEPING YOUR ORIGINAL CODE) */
+.App {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 5️⃣ PAGE TRANSITION (USED BY .page-transition WRAPPER) */
+.page-transition {
+  animation: pageFadeIn 0.35s ease-in-out;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 6️⃣ GLOBAL NAVBAR HELPERS (NON-BREAKING) */
+.header,
+.landing-top-header,
+.about-navbar,
+.page-header,
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 7️⃣ GLOBAL NAV BUTTON BASE (USED INLINE TOO) */
+.header-nav a,
+.header-nav button {
+  border: 2px solid var(--border-purple);
+  background: transparent;
+  color: var(--text-main);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  height: 42px;
+  font-size: 15px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 4px 14px rgba(0, 0, 0, 0.18);
+
+
+  /* ✅ FIX: consistent button sizing & alignment */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.header-nav a:hover,
+.header-nav button:hover {
+  background: rgba(92, 61, 139, 0.12);
+}
+
+/* 8️⃣ GLOBAL CARD BASE (WILL BE USED LATER) */
+.card,
+.info-card,
+.step-card,
+.result-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+/* 9️⃣ LINKS */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 🔟 SCROLLBAR (SUBTLE, DARK) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
