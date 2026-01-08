@@ -3,6 +3,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield, HelpCircle } from "lucide-react";
 import "./About.css";
+import img2 from "../assets/img2.jpg";
+import img1 from "../assets/img1.jpeg";
+import img3 from "../assets/img3.jpeg";
+import img4 from "../assets/img4.jpeg";
 
 const About = () => {
   const navigate = useNavigate();
@@ -106,7 +110,9 @@ const About = () => {
             <h2>Meet Our Team</h2>
             <div className="team-grid">
               <div className="team-member">
-                <div className="member-avatar">👤</div>
+                <div className="member-avatar">
+                  <img src={img1} alt="Member Avatar" />
+                </div>
                 <h3>Arnav Gupta</h3>
                 <p>
                   <strong>Branch:</strong> CSE
@@ -114,21 +120,31 @@ const About = () => {
                 <p>
                   <strong>Graduating Year:</strong> 2027
                 </p>
+                <p>
+                  <strong>E-mail: </strong> arnavg350@gmail.com
+                </p>
               </div>
 
               <div className="team-member">
-                <div className="member-avatar">👤</div>
+                <div className="member-avatar">
+                  <img src={img2} alt="Member Avatar" />
+                </div>
                 <h3>Anushka Gupta</h3>
                 <p>
                   <strong>Branch:</strong> CSE
                 </p>
                 <p>
-                  <strong>Graduating Year:</strong> 2027
+                  <strong>Graduating Year: </strong> 2027
+                </p>
+                <p>
+                  <strong>E-mail: </strong> anushkaguptajwr@gmail.com
                 </p>
               </div>
 
               <div className="team-member">
-                <div className="member-avatar">👤</div>
+                <div className="member-avatar">
+                  <img src={img3} alt="Member Avatar" />
+                </div>
                 <h3>Akshat Prakash Kanth</h3>
                 <p>
                   <strong>Branch:</strong> CSE
@@ -136,16 +152,24 @@ const About = () => {
                 <p>
                   <strong>Graduating Year:</strong> 2027
                 </p>
+                <p>
+                  <strong>E-mail: </strong> kanthakshat@gmail.com
+                </p>
               </div>
 
               <div className="team-member">
-                <div className="member-avatar">👤</div>
+                <div className="member-avatar">
+                  <img src={img4} alt="Member Avatar" />
+                </div>
                 <h3>Tanisha Bajaj</h3>
                 <p>
                   <strong>Branch:</strong> CSE
                 </p>
                 <p>
                   <strong>Graduating Year:</strong> 2027
+                </p>
+                <p>
+                  <strong>E-mail: </strong> tanisha28bajaj@gmail.com
                 </p>
               </div>
             </div>
