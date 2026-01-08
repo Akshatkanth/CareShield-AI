@@ -188,8 +188,8 @@ const TextInput = ({ value, onChange, onAnalyze, isLoading, onFilesChange }) => 
             </button>
           </div>
 
-          <span className="char-count">
-            {value.length} / 10000 characters
+          <span className="char-count" style={{ color: value.length < 10 && value.length > 0 ? '#ef4444' : '#718096' }}>
+            {value.length} / 10000 characters {value.length > 0 && value.length < 10 && `(min 10)`}
           </span>
         </div>
 
@@ -241,7 +241,7 @@ const TextInput = ({ value, onChange, onAnalyze, isLoading, onFilesChange }) => 
           type="submit"
           className="analyze-button"
           disabled={
-            isLoading || (!value.trim() && files.length === 0) || (value.trim() && value.length < 5)
+            isLoading || (!value.trim() && files.length === 0) || (value.trim() && value.trim().length < 10)
           }
         >
           {isLoading ? 'Analyzing...' : 'Analyze Content'}
