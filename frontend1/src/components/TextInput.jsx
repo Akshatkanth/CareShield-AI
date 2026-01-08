@@ -75,10 +75,11 @@ const TextInput = ({ value, onChange, onAnalyze, isLoading, onFilesChange }) => 
     onChange(value + emoji.native);
   };
 
-  const handleToggleVoice = () => {
+  const handleToggleVoice = async () => {
     if (imagePreview) return;
+    
     if (!browserSupportsSpeechRecognition) {
-      alert("Your browser doesn't support voice input.");
+      alert("Your browser doesn't support voice input. Please use Chrome, Edge, or Safari.");
       return;
     }
 
@@ -87,13 +88,20 @@ const TextInput = ({ value, onChange, onAnalyze, isLoading, onFilesChange }) => 
       SpeechRecognition.stopListening();
       resetTranscript();
     } else {
-      // START: current text ko base bana lo
-      setVoiceBaseText(value || '');
-      resetTranscript();
-      SpeechRecognition.startListening({
-        continuous: true,
-        language: 'en-IN',
-      });
+      // Request microphone permission first
+      try {
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+        // START: current text ko base bana lo
+        setVoiceBaseText(value || '');
+        resetTranscript();
+        SpeechRecognition.startListening({
+          continuous: true,
+          language: 'en-IN',
+        });
+      } catch (error) {
+        console.error('Microphone permission denied:', error);
+        alert('Microphone access is required for voice input. Please allow microphone access in your browser settings.');
+      }
     }
   };
 
