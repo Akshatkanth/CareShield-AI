@@ -124,6 +124,14 @@
   text-align: center;
 }
 
+.member-avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
 .member-avatar {
   width: 86px;
   height: 86px;
